@@ -17,7 +17,7 @@ Data from the RAP-Chem model were used as features. Rapid Refresh with Chemistry
 
 The target values come from the TROPOspheric Monitoring Instrument (TROPOMI) aboard the Copernicus Sentinel-5 Precursor satellite (Veefkind et al., 2012). TROPOMI is an imaging spectrometer that measures backscatter and reflected sunlight in various spectral regions. The ground pixel size is 7 km x 7 km. TROPOMI retrieves the CO total column once a day and passes over the west coast of the US in the afternoon. TROPOMI is sensitive to the entire troposphere. The specific target variable is CO total vertical column (molec/cm2). 
 
-![](assets/IMG/datapenguin.png){: width="500" }
+![](assets/projectplots/Figure1.png){: width="300" }
 
 *Figure 1: Here is a caption for my diagram. This one shows a pengiun [1].*
 
@@ -34,23 +34,35 @@ It is worth noting that the RAP-Chem data and TROPOMI data are not immediately c
 
 I tested the random forest regressor using the test dataset. Figure 2 shows the difference between the test dataset and the predicted dataset. The two datasets are extremely similar though the predicted dataset is underpredicting the maximums over Western Oregon. The RMSE is 0.0799e19. The model performs quite well for this time though it should be noted that the testing data is from the same date and time as the training data. 
 
+![](assets/projectplots/Figure2.png){: width="300" }
+
 #### Bias correction
 
 Figure 3a shows the difference between RAP-Chem (X_test) and TROPOMI (y_pred) CO total vertical columns to analyze the spatial bias present in the RAP-Chem model. RAP-Chem appears to overpredict more over the continent and closer to areas where there would be a fresh plume. Underpredictions occur more often over the ocean and particularly on the edges of the plume. These are regions where the plume would be older. 
 
 Figure 3b shows the bias between RAP-Chem and TROPOMI CO total vertical columns (as shown in Figure 3a) plotted against the magnitude of the RAP-Chem CO total vertical column. There is a clear correlation between the bias and the total vertical column. When RAP-Chem has a higher magnitude, the bias tends to be higher whereas, when the RAP-Chem magnitude is lower the bias is small or becomes negative. This shows that RAP-Chem tends to majorly overpredict high values of CO and slightly underpredict lower values. 
 
+![](assets/projectplots/Figure3.png){: width="300" }
+
 #### Feature importance
 
 Figure 4 shows the feature importance of the RAP-Chem features included in the model. The CO total vertical column is the most important feature as expected accounting for 44% of the correlation. The other four features are remarkably close together with surface temperature, surface co, aerosol scattering height, and surface PM2.5 accounting for 17%, 14%, 13%, and 10% respectively. Despite the model trying to predict CO total vertical column, the RAP-Chem CO total vertical column does not even account for half of the correlation, indicating the importance of the other features. 
+
+![](assets/projectplots/Figure4.png){: width="300" }
 
 #### Retrieve missing TROPOMI data
 
 The model was first tested on its ability to predict TROPOMI data from regions with cloud gaps at the same time as the training data. To test this, I ran RAP-Chem data in the RAP-Chem grid from 09/12/2020 at 20 UTC through the random forest regression to determine if it could give me an approximation of the data unavailable in TROPOMI due to clouds. The random forest regression has already been proven to perform well on RAP-Chem data for this day so this is testing if it is still successful filling in the gaps. The result is shown in Figure 5. Overall, it looks remarkably good. The plume structure appears to be nearly identical to the TROPOMI data and the cloud gaps are filled in smoothly with the random forest regression. This random forest regression is successful in filling in cloud gaps present in TROPOMI when trained with data from the same day and time as the satellite retrieval. 
 
+![](assets/projectplots/Figure5.png){: width="300" }
+
 The model was then tested on its ability to predict TROPOMI data for other times on 09/12/2020. RAP-Chem data from 09/12/2020 at 0-23 UTC was run through the random forest regression model and the results are shown as a gif in Figure 6. The plume in Figure 6a evolves the same as the RAP-Chem plume does in Figure 6b. As it gets close to 20 UTC (time of the training data), the plume shrinks back to the shape of the TROPOMI plume which is similar but not identical to the RAP-Chem plume’s shape. 20 UTC is also the only time where the orange and red maximum values are seen. There is no TROPOMI data available for these times so it is difficult to verify the accuracy. Going off observations alone, the plume looks moderately accurate but, as the discrepancy in the plume development near 20 UTC shows, the model is underestimating maximums and has a shape closer to that of RAP-Chem than TROPOMI. 
 
+![](assets/projectplots/Figure6.gif){: width="300" }
+
 Finally, the model was tested on its ability to predict TROPOMI data on other days. Figure 7 shows the results of running the RAP-Chem data through the random forest regression model on 09/11/2020 and 09/13/2020 at 20 UTC as well as the corresponding TROPOMI retrievals. Neither predicted dataset performs exceptionally well when compared against the TROPOMI retrieval. On 09/11/2020 the larger values in TROPOMI are drastically underpredicted. This may be because the RAP-Chem CO total vertical column values are larger than the ones in the training set. The predicted dataset still maintains the approximate shape of the plume but that is more of a testament to RAP-Chem’s accuracy than the random forest regression model’s. The predicted dataset on 09/13/2020 shows similar behaviors. The maximums are still underpredicted though by a smaller margin than on 09/11/2020. The shape is also similar but matches the shape of RAP-Chem more than the shape of TROPOMI. 
+
+![](assets/projectplots/Figure7.png){: width="300" }
 
 ## Conclusion
 
