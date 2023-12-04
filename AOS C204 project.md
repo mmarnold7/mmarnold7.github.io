@@ -13,7 +13,7 @@
 
 ## Data
 
-Data from the RAP-Chem model were used as features. Rapid Refresh with Chemistry (RAP-Chem) is an experimental forecast model that runs full chemistry currently being developed at NOAA Global Sciences Laboratory (GSL). Real-time graphical forecast outputs are available online (https://rapidrefresh.noaa.gov/RAPchem/Welcome.cgi). Notably, RAP-Chem includes wildfire emissions of gasses and aerosols computed using Fire Radiative Power (FRP) measurements. It has a resolution of 14 km x 14 km and includes parametrized plume rise due to wildfires. The variables used as features were: CO total vertical column (molec/cm2), surface CO (ppm), surface PM2.5 (?), surface temperature (K), and aerosol scattering height (km). The aerosol scattering height is an integrated value weighted by PM2.5 concentration to give the approximate middle height of the aerosol layer. 
+Data from the RAP-Chem model were used as features. Rapid Refresh with Chemistry (RAP-Chem) is an experimental forecast model that runs full chemistry currently being developed at NOAA Global Sciences Laboratory (GSL). Real-time graphical forecast outputs are available online (https://rapidrefresh.noaa.gov/RAPchem/Welcome.cgi). Notably, RAP-Chem includes wildfire emissions of gasses and aerosols computed using Fire Radiative Power (FRP) measurements. It has a resolution of 14 km x 14 km and includes parametrized plume rise due to wildfires. The variables used as features were: CO total vertical column (molec/cm2), surface CO (ppm), surface PM2.5 (micrograms/m2), surface temperature (K), and aerosol scattering height (km). The aerosol scattering height is an integrated value weighted by PM2.5 concentration to give the approximate middle height of the aerosol layer. 
 
 The target values come from the TROPOspheric Monitoring Instrument (TROPOMI) aboard the Copernicus Sentinel-5 Precursor satellite (Veefkind et al., 2012). TROPOMI is an imaging spectrometer that measures backscatter and reflected sunlight in various spectral regions. The ground pixel size is 7 km x 7 km. TROPOMI retrieves the CO total column once a day and passes over the west coast of the US in the afternoon. TROPOMI is sensitive to the entire troposphere. The specific target variable is CO total vertical column (molec/cm2). 
 
@@ -46,7 +46,7 @@ Figure 3b shows the bias between RAP-Chem and TROPOMI CO total vertical columns 
 
 #### Feature importance
 
-Figure 4 shows the feature importance of the RAP-Chem features included in the model. The CO total vertical column is the most important feature as expected accounting for 44% of the correlation. The other four features are remarkably close together with surface temperature, surface co, aerosol scattering height, and surface PM2.5 accounting for 17%, 14%, 13%, and 10% respectively. Despite the model trying to predict CO total vertical column, the RAP-Chem CO total vertical column does not even account for half of the correlation, indicating the importance of the other features. 
+Figure 4 shows the feature importance of the RAP-Chem features included in the model. The CO total vertical column is the most important feature as expected accounting for 65% of the correlation. The other four features are remarkably close together with surface temperature, aerosol scattering height, surface co, and surface PM2.5 accounting for 14%, 9%, 7%, and 5% respectively. Despite the model trying to predict CO total vertical column, the RAP-Chem CO total vertical column accounts for just over half of the correlation, indicating the importance of the other features. 
 
 ![](assets/projectplots/Figure4.png){: width="300" }
 
@@ -72,7 +72,19 @@ These results are likely a result of overfitting the data to the training set. T
 
 
 ## References
-[1] DALL-E 3
+
+Cal FIRE. (n.d.). Statistics. https://www.fire.ca.gov/our-impact/statistics
+
+Cascio, W. E. (2018). Wildland fire smoke and human health. Science of The Total Environment,
+624, 586–595. https://doi.org/10.1016/j.scitotenv.2017.12.086
+
+Li, Y., Tong, D., Ma, S., Zhang, X., Kondragunta, S., Li, F., & Saylor, R. (2021). Dominance of wildfires impact on air quality exceedances during the 2020 record‐breaking wildfire season in the United States. Geophysical Research Letters, 48(21). https://doi.org/10.1029/2021gl094908
+
+Pausas, J. G., & Keeley, J. E. (2021). Wildfires and global change. Frontiers in Ecology and the Environment, 19(7), 387–395. https://doi.org/10.1002/fee.2359
+
+Veefkind, J. P., Aben, I., McMullan, K., Förster, H., de Vries, J., Otter, G., Claas, J., Eskes, H. J., de Haan, J. F., Kleipool, Q., van Weele, M., Hasekamp, O., Hoogeveen, R., Landgraf, J., Snel, R., Tol, P., Ingmann, P., Voors, R., Kruizinga, B., ... Levelt, P. F. (2012). Tropomi on the ESA sentinel-5 precursor: A GMES mission for global observations of the atmospheric composition for climate, air quality and ozone layer applications. Remote Sensing of Environment, 120, 70–83. https://doi.org/10.1016/j.rse.2011.09.027
+
+Wildfires. Congressional Budget Office. (2022, June). Retrieved March 20, 2023, from https://www.cbo.gov/publication/58212
 
 [back](./)
 
