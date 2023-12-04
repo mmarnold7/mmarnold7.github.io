@@ -60,6 +60,8 @@ The model was then tested on its ability to predict TROPOMI data for other times
 
 ![](assets/projectplots/Figure6.gif){: width="300" }
 
+*Figure 6. GIF of the results of running the full RAP-Chem datasets for 09/12/2020 0-23 UTC through the random forest regression model.*
+
 Finally, the model was tested on its ability to predict TROPOMI data on other days. Figure 7 shows the results of running the RAP-Chem data through the random forest regression model on 09/11/2020 and 09/13/2020 at 20 UTC as well as the corresponding TROPOMI retrievals. Neither predicted dataset performs exceptionally well when compared against the TROPOMI retrieval. On 09/11/2020 the larger values in TROPOMI are drastically underpredicted. This may be because the RAP-Chem CO total vertical column values are larger than the ones in the training set. The predicted dataset still maintains the approximate shape of the plume but that is more of a testament to RAP-Chem’s accuracy than the random forest regression model’s. The predicted dataset on 09/13/2020 shows similar behaviors. The maximums are still underpredicted though by a smaller margin than on 09/11/2020. The shape is also similar but matches the shape of RAP-Chem more than the shape of TROPOMI. 
 
 ![](assets/projectplots/Figure7.png){: width="300" }
