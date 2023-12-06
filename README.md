@@ -3,4 +3,4 @@
 
 ## Projects
 
-[AOS C204 Machine Learning Project](/AOS C204 project.md)
+[AOS C204 Machine Learning Project](/AOSC204project.md)
